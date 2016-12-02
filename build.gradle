@@ -56,7 +56,7 @@ task copyBinary(type: Copy, dependsOn: 'binaryJar') {
 tasks.getByName('assemble').dependsOn('copyBinary')
 
 repositories {
-	mavenCentral()
+  mavenCentral()
   maven { url "http://dl.bintray.com/kotlin/kotlin-eap-1.1" }
 }
 
