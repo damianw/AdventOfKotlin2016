@@ -5,10 +5,11 @@ import com.beust.jcommander.JCommander
 import com.beust.jcommander.Parameter
 import com.beust.jcommander.ParameterException
 import wtf.log.xmas2016.day1.day1
+import wtf.log.xmas2016.day2.day2
 import java.lang.Exception
 import kotlin.system.exitProcess
 
-private val DAY_SOLUTIONS = listOf(::day1)
+private val DAY_SOLUTIONS = listOf(::day1, ::day2)
 
 private object ProgramArguments {
 
