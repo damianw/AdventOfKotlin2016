@@ -1,6 +1,5 @@
 import okio.BufferedSource
 import okio.Okio
-import java.io.InputStream
 
 /**
  * @author Damian Wieczorek {@literal <damian@farmlogs.com>}
@@ -9,6 +8,6 @@ import java.io.InputStream
  */
 
 /**
- * Convenience function for opening a resource as an [InputStream]
+ * Convenience function for opening a resource as a [BufferedSource]
  */
 fun openResource(name: String): BufferedSource = Okio.buffer(Okio.source(ClassLoader.getSystemResourceAsStream(name)))
