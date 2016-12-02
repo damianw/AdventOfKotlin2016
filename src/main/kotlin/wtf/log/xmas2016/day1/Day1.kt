@@ -79,7 +79,7 @@ class Player {
 fun day1(): String {
   val player = Player()
   openResource("Day1.txt")
-      .readUtf8()
+      .readText()
       .trim()
       .split(", ")
       .map(Instruction.Companion::parse)
