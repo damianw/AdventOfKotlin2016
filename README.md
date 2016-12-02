@@ -3,7 +3,7 @@ AdventOfKotlin2016
 
 Solutions to the [2016 Advent Of Code](http://adventofcode.com/2016) problems, written in Kotlin (1.1-M02).
 
-Try not to take anything too seriously. It's all for fun, after all. Gradle is fun, right guys?
+Try not to take anything too seriously. It's all for `fun`, after all. OOP is `fun`! FP is `fun`! Gradle is `fun`! What's code without the `fun`?
 
 ### Building
 
