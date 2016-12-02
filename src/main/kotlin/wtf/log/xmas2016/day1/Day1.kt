@@ -76,13 +76,13 @@ class Player {
 
 }
 
-fun day1(): String {
+fun day1(): Pair<String, String> {
   val player = Player()
   openResource("Day1.txt")
-      .readUtf8()
+      .readText()
       .trim()
       .split(", ")
       .map(Instruction.Companion::parse)
       .forEach(player::move)
-  return player.taxicabDistance.toString()
+  return player.taxicabDistance.toString() to "TODO I forgot these things have two parts"
 }

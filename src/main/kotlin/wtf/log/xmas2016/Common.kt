@@ -1,7 +1,6 @@
 package wtf.log.xmas2016
 
-import okio.BufferedSource
-import okio.Okio
+import java.io.BufferedReader
 
 /**
  * @author Damian Wieczorek {@literal <damian@farmlogs.com>}
@@ -10,6 +9,6 @@ import okio.Okio
  */
 
 /**
- * Convenience function for opening a resource as a [BufferedSource]
+ * Convenience function for opening a resource as a [BufferedReader]
  */
-fun openResource(name: String): BufferedSource = Okio.buffer(Okio.source(ClassLoader.getSystemResourceAsStream(name)))
+fun openResource(name: String): BufferedReader = ClassLoader.getSystemResourceAsStream(name).bufferedReader()

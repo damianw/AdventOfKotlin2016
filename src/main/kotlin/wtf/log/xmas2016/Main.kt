@@ -5,10 +5,11 @@ import com.beust.jcommander.JCommander
 import com.beust.jcommander.Parameter
 import com.beust.jcommander.ParameterException
 import wtf.log.xmas2016.day1.day1
+import wtf.log.xmas2016.day2.day2
 import java.lang.Exception
 import kotlin.system.exitProcess
 
-private val DAY_SOLUTIONS = listOf(::day1)
+private val DAY_SOLUTIONS = listOf(::day1, ::day2)
 
 private object ProgramArguments {
 
@@ -68,10 +69,14 @@ fun main(args: Array<String>) {
   val days = ProgramArguments.days ?: 1..DAY_SOLUTIONS.size
 
   days.forEach { day ->
+    val (part1, part2) = DAY_SOLUTIONS[day - 1]()
     println("========")
     println("Day $day")
     println("========")
-    println(DAY_SOLUTIONS[day - 1]())
+    print("-> Part 1: ")
+    println(part1)
+    print("-> Part 2: ")
+    println(part2)
     println()
   }
 
