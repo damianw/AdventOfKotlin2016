@@ -1,6 +1,6 @@
 package wtf.log.xmas2016.day1
 
-import openResource
+import wtf.log.xmas2016.openResource
 import java.awt.Point
 
 /**
