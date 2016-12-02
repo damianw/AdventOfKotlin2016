@@ -68,10 +68,14 @@ fun main(args: Array<String>) {
   val days = ProgramArguments.days ?: 1..DAY_SOLUTIONS.size
 
   days.forEach { day ->
+    val (part1, part2) = DAY_SOLUTIONS[day - 1]()
     println("========")
     println("Day $day")
     println("========")
-    println(DAY_SOLUTIONS[day - 1]())
+    print("-> Part 1: ")
+    println(part1)
+    print("-> Part 2: ")
+    println(part2)
     println()
   }
 
