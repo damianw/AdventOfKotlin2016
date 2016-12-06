@@ -11,7 +11,7 @@ import wtf.log.xmas2016.day5.day5
 import java.lang.Exception
 import kotlin.system.exitProcess
 
-private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, ::day5)
+private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5)
 
 private object ProgramArguments {
 
@@ -24,7 +24,7 @@ private object ProgramArguments {
 
   class DayValidator : IValueValidator<List<Int>> {
     override fun validate(name: String, value: List<Int>) {
-      val errors = value.filter { it !in 1..DAY_SOLUTIONS.size }.distinct()
+      val errors = value.filter { DAY_SOLUTIONS.getOrNull(it - 1) == null }.distinct()
       // the lesson here is: never build sentences in code, kids
       when (errors.size) {
         0 -> return
@@ -70,11 +70,12 @@ fun main(args: Array<String>) {
 
   val days = ProgramArguments.days ?: 1..DAY_SOLUTIONS.size
 
-  days.forEach { day ->
-    val (part1, part2) = DAY_SOLUTIONS[day - 1]()
+  for (day in days) {
+    val function = DAY_SOLUTIONS[day - 1] ?: continue
     println("========")
     println("Day $day")
     println("========")
+    val (part1, part2) = function()
     print("-> Part 1: ")
     println(part1)
     print("-> Part 2: ")
