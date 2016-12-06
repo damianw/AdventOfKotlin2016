@@ -4,11 +4,14 @@ import com.beust.jcommander.IValueValidator
 import com.beust.jcommander.JCommander
 import com.beust.jcommander.Parameter
 import com.beust.jcommander.ParameterException
+import rx.Observable
+import rx.Subscription
 import wtf.log.xmas2016.day1.day1
 import wtf.log.xmas2016.day2.day2
 import wtf.log.xmas2016.day3.day3
 import wtf.log.xmas2016.day5.day5
 import java.lang.Exception
+import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 
 private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5)
@@ -47,6 +50,26 @@ private object ProgramArguments {
 
 }
 
+private object Spinner {
+
+  private val spinBars = charArrayOf('-', '\\', '|', '/', '-', '\\', '|', '/')
+
+  private var subscription: Subscription? = null
+
+  fun start() {
+    subscription?.unsubscribe()
+    subscription = Observable.interval(100, TimeUnit.MILLISECONDS)
+        .map { spinBars[it.toInt() % spinBars.size] }
+        .subscribe { print("\r$it ") }
+  }
+
+  fun stop() {
+    subscription?.unsubscribe()
+    print('\r')
+  }
+
+}
+
 fun main(args: Array<String>) {
   val commander = JCommander(ProgramArguments).apply {
     setProgramName("AdventOfKotlin2016")
@@ -75,7 +98,9 @@ fun main(args: Array<String>) {
     println("========")
     println("Day $day")
     println("========")
+    Spinner.start()
     val (part1, part2) = function()
+    Spinner.stop()
     print("-> Part 1: ")
     println(part1)
     print("-> Part 2: ")

@@ -64,5 +64,6 @@ dependencies {
   compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   compile 'com.squareup.okio:okio:1.11.0'
   compile "de.weltraumschaf.commons:jcommander:2.1.0"
+  compile 'io.reactivex:rxjava:1.2.3'
 }
 
