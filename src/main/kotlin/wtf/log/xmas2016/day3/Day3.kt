@@ -40,4 +40,4 @@ fun day3(): Pair<String, String> = part1().toString() to part2().toString()
 
 fun part1(): Int = readRows().count(::isValidTriangle)
 
-fun part2(): Int = readRows().transpose().map { it.toChunks(3) }.flatten().count(::isValidTriangle)
+fun part2(): Int = readRows().transpose().flatMap { it.toChunks(3) }.count(::isValidTriangle)
