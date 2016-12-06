@@ -33,13 +33,12 @@ fun part1(): String {
 }
 
 fun part2(): String {
-  val ints = charArrayOf('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
-  val password = CharArray(8) { 0.toChar() }
+  val password = CharArray(8)
   val sequence = hashSequence(INPUT)
-      .filter { it[5] in ints }
-      .map { it[5].toString().toInt() to it[6] }
+      .filter { it[5].toInt() - 48 in 0..password.lastIndex }
+      .map { (it[5].toInt() - 48) to it[6] }
   for ((position, char) in sequence) {
-    if (position in 0..password.lastIndex && password[position] == 0.toChar()) {
+    if (password[position] == 0.toChar()) {
       password[position] = char
       if (password.all { it != 0.toChar() }) {
         break
