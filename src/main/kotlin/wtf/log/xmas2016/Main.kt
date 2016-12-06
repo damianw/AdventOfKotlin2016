@@ -13,6 +13,7 @@ import wtf.log.xmas2016.day5.day5
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
+import kotlin.system.measureNanoTime
 
 private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5)
 
@@ -70,6 +71,14 @@ private object Spinner {
 
 }
 
+private inline fun <T> measureSeconds(block: () -> T): Pair<T, Long> {
+  var result: T? = null
+  val time = measureNanoTime {
+    result = block()
+  }
+  return (result as T) to (time / 1000000000)
+}
+
 fun main(args: Array<String>) {
   val commander = JCommander(ProgramArguments).apply {
     setProgramName("AdventOfKotlin2016")
@@ -99,8 +108,10 @@ fun main(args: Array<String>) {
     println("Day $day")
     println("========")
     Spinner.start()
-    val (part1, part2) = function()
+    val (result, time) = measureSeconds(function)
+    val (part1, part2) = result
     Spinner.stop()
+    println("-> Time elapsed: $time seconds")
     print("-> Part 1: ")
     println(part1)
     print("-> Part 2: ")
