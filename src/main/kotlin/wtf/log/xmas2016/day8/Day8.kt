@@ -62,7 +62,7 @@ class Screen(val width: Int = 50, val height: Int = 6) {
     }
   }
 
-  private inline fun rotate(amount: Int, bound: Int, get: (Int) -> Char, set: (Int, Char) -> Unit, start: () -> Char) {
+  private fun rotate(amount: Int, bound: Int, get: (Int) -> Char, set: (Int, Char) -> Unit, start: () -> Char) {
     for (pass in 0 until amount) {
       var last = start()
       for (cell in 0 until bound) {
