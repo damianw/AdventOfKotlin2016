@@ -34,23 +34,15 @@ class CharGrid(val width: Int, val height: Int) : Iterable<Char> {
 
   override fun toString() = buildString(capacity = matrix.size + 2 * (width + height)) {
     append('┌')
-    for (x in 1..width) {
-      append('─')
-    }
-    append('┐')
-    append('\n')
+    for (x in 1..width) append('─')
+    append("┐\n")
     for (y in 0 until height) {
       append('│')
-      for (x in 0 until width) {
-        append(get(x, y))
-      }
-      append('│')
-      append('\n')
+      for (x in 0 until width) append(get(x, y))
+      append("│\n")
     }
     append('└')
-    for (x in 1..width) {
-      append('─')
-    }
+    for (x in 1..width) append('─')
     append('┘')
   }
 
