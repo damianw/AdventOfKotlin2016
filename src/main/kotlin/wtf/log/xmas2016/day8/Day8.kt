@@ -60,26 +60,23 @@ class Screen(val width: Int = 50, val height: Int = 6) {
     }
   }
 
-  fun rotateColumn(x: Int, amount: Int) {
-    for (i in 0 until amount) {
-      var last = grid[x, -1]
-      for (y in 0 until height) {
-        val current = grid[x, y]
-        grid[x, y] = last
+  private inline fun rotate(amount: Int, bound: Int, start: () -> Char, get: (Int) -> Char, set: (Int, Char) -> Unit) {
+    for (pass in 0 until amount) {
+      var last = start()
+      for (cell in 0 until bound) {
+        val current = get(cell)
+        set(cell, last)
         last = current
       }
     }
   }
 
+  fun rotateColumn(x: Int, amount: Int) {
+    rotate(amount, height, { grid[x, -1] }, { grid[x, it] }, { y, c -> grid[x, y] = c })
+  }
+
   fun rotateRow(y: Int, amount: Int) {
-    for (i in 0 until amount) {
-      var last = grid[-1, y]
-      for (x in 0 until width) {
-        val current = grid[x, y]
-        grid[x, y] = last
-        last = current
-      }
-    }
+    rotate(amount, width, { grid[-1, y] }, { grid[it, y] }, { x, c -> grid[x, y] = c })
   }
 
   fun countIlluminated(): Int = grid.count { it == '█' }
