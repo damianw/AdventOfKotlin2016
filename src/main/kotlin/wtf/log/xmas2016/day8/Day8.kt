@@ -95,21 +95,17 @@ private sealed class Instruction {
 
   companion object {
 
-    private val REGEX_RECT = Regex("rect ([0-9]+)x([0-9]+)")
-    private val REGEX_ROTATE_ROW = Regex("rotate row y=([0-9]+) by ([0-9]+)")
-    private val REGEX_ROTATE_COLUMN = Regex("rotate column x=([0-9]+) by ([0-9]+)")
-
-    fun parse(input: String): Instruction {
-      REGEX_RECT.matchEntire(input)?.destructured?.let { (width, height) ->
-        return Rect(width.toInt(), height.toInt())
+    fun parse(input: String): Instruction = when {
+      input.startsWith("rect ") -> input.substring(5).split('x').let { (width, height) ->
+        Rect(width.toInt(), height.toInt())
       }
-      REGEX_ROTATE_ROW.matchEntire(input)?.destructured?.let { (y, amount) ->
-        return RotateRow(y.toInt(), amount.toInt())
+      input.startsWith("rotate r") -> input.substring(13).split(" by ").let { (y, amount) ->
+        RotateRow(y.toInt(), amount.toInt())
       }
-      REGEX_ROTATE_COLUMN.matchEntire(input)?.destructured?.let { (x, amount) ->
-        return RotateColumn(x.toInt(), amount.toInt())
+      input.startsWith("rotate c") -> input.substring(16).split(" by ").let { (x, amount) ->
+        RotateColumn(x.toInt(), amount.toInt())
       }
-      throw ParseException("Could not parse: $input", 0)
+      else -> throw ParseException("Could not parse: $input", 0)
     }
 
   }
