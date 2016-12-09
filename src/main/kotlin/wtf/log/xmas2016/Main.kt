@@ -81,6 +81,20 @@ private inline fun <T> measureSeconds(block: () -> T): Pair<T, Long> {
   return (result as T) to (time / 1000000000)
 }
 
+private fun String.indent(amount: Int): String = buildString {
+  for (i in 0 until amount) {
+    append(' ')
+  }
+  append(this@indent)
+}
+
+private fun printIndented(header: String, input: String) {
+  print(header)
+  val lines = input.lines()
+  println(lines.first())
+  lines.drop(1).map { it.indent(header.length) }.forEach(::println)
+}
+
 fun main(args: Array<String>) {
   val commander = JCommander(ProgramArguments).apply {
     setProgramName("AdventOfKotlin2016")
@@ -114,10 +128,8 @@ fun main(args: Array<String>) {
     val (part1, part2) = result
     Spinner.stop()
     println("-> Time elapsed: $time seconds")
-    print("-> Part 1: ")
-    println(part1)
-    print("-> Part 2: ")
-    println(part2)
+    printIndented("-> Part 1: ", part1)
+    printIndented("-> Part 2: ", part2)
     println()
   }
 
