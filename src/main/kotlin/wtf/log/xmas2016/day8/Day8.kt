@@ -32,7 +32,7 @@ class CharGrid(val width: Int, val height: Int) : Iterable<Char> {
 
   override fun iterator(): Iterator<Char> = matrix.iterator()
 
-  override fun toString() = buildString {
+  override fun toString() = buildString(capacity = matrix.size + 2 * (width + height)) {
     append('┌')
     for (x in 1..width) {
       append('─')
