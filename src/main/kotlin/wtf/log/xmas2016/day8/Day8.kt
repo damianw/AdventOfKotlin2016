@@ -1,5 +1,7 @@
 package wtf.log.xmas2016.day8
 
+import org.funktionale.partials.partially1
+import org.funktionale.partials.partially2
 import wtf.log.xmas2016.openResource
 import java.text.ParseException
 
@@ -72,11 +74,11 @@ class Screen(val width: Int = 50, val height: Int = 6) {
   }
 
   fun rotateColumn(x: Int, amount: Int) {
-    rotate(amount, height, { grid[x, -1] }, { grid[x, it] }, { y, c -> grid[x, y] = c })
+    rotate(amount, height, { grid[x, -1] }, grid::get.partially1(x), grid::set.partially1(x))
   }
 
   fun rotateRow(y: Int, amount: Int) {
-    rotate(amount, width, { grid[-1, y] }, { grid[it, y] }, { x, c -> grid[x, y] = c })
+    rotate(amount, width, { grid[-1, y] }, grid::get.partially2(y), grid::set.partially2(y))
   }
 
   fun countIlluminated(): Int = grid.count { it == '█' }
