@@ -12,12 +12,13 @@ import wtf.log.xmas2016.day3.day3
 import wtf.log.xmas2016.day5.day5
 import wtf.log.xmas2016.day6.day6
 import wtf.log.xmas2016.day7.day7
+import wtf.log.xmas2016.day8.day8
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 import kotlin.system.measureNanoTime
 
-private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5, ::day6, ::day7)
+private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5, ::day6, ::day7, ::day8)
 
 private object ProgramArguments {
 
@@ -81,6 +82,20 @@ private inline fun <T> measureSeconds(block: () -> T): Pair<T, Long> {
   return (result as T) to (time / 1000000000)
 }
 
+private fun String.indent(amount: Int): String = buildString {
+  for (i in 0 until amount) {
+    append(' ')
+  }
+  append(this@indent)
+}
+
+private fun printIndented(header: String, input: String) {
+  print(header)
+  val lines = input.lines()
+  println(lines.first())
+  lines.drop(1).map { it.indent(header.length) }.forEach(::println)
+}
+
 fun main(args: Array<String>) {
   val commander = JCommander(ProgramArguments).apply {
     setProgramName("AdventOfKotlin2016")
@@ -114,10 +129,8 @@ fun main(args: Array<String>) {
     val (part1, part2) = result
     Spinner.stop()
     println("-> Time elapsed: $time seconds")
-    print("-> Part 1: ")
-    println(part1)
-    print("-> Part 2: ")
-    println(part2)
+    printIndented("-> Part 1: ", part1)
+    printIndented("-> Part 2: ", part2)
     println()
   }
 
