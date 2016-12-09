@@ -62,7 +62,7 @@ class Screen(val width: Int = 50, val height: Int = 6) {
     }
   }
 
-  private inline fun rotate(amount: Int, bound: Int, start: () -> Char, get: (Int) -> Char, set: (Int, Char) -> Unit) {
+  private inline fun rotate(amount: Int, bound: Int, get: (Int) -> Char, set: (Int, Char) -> Unit, start: () -> Char) {
     for (pass in 0 until amount) {
       var last = start()
       for (cell in 0 until bound) {
@@ -74,11 +74,11 @@ class Screen(val width: Int = 50, val height: Int = 6) {
   }
 
   fun rotateColumn(x: Int, amount: Int) {
-    rotate(amount, height, { grid[x, -1] }, grid::get.partially1(x), grid::set.partially1(x))
+    rotate(amount, height, grid::get.partially1(x), grid::set.partially1(x)) { grid[x, -1] }
   }
 
   fun rotateRow(y: Int, amount: Int) {
-    rotate(amount, width, { grid[-1, y] }, grid::get.partially2(y), grid::set.partially2(y))
+    rotate(amount, width, grid::get.partially2(y), grid::set.partially2(y)) { grid[-1, y] }
   }
 
   fun countIlluminated(): Int = grid.count { it == '█' }
