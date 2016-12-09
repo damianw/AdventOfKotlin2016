@@ -12,12 +12,13 @@ import wtf.log.xmas2016.day3.day3
 import wtf.log.xmas2016.day5.day5
 import wtf.log.xmas2016.day6.day6
 import wtf.log.xmas2016.day7.day7
+import wtf.log.xmas2016.day8.day8
 import java.lang.Exception
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 import kotlin.system.measureNanoTime
 
-private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5, ::day6, ::day7)
+private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5, ::day6, ::day7, ::day8)
 
 private object ProgramArguments {
 
