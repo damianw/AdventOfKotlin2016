@@ -63,7 +63,7 @@ class Screen(val width: Int = 50, val height: Int = 6) {
   fun rect(width: Int, height: Int) {
     for (x in 0 until width) {
       for (y in 0 until height) {
-        grid[x, y] = '#'
+        grid[x, y] = '█'
       }
     }
   }
@@ -90,7 +90,7 @@ class Screen(val width: Int = 50, val height: Int = 6) {
     }
   }
 
-  fun countIlluminated(): Int = grid.count { it == '#' }
+  fun countIlluminated(): Int = grid.count { it == '█' }
 
   override fun toString(): String = grid.toString()
 
