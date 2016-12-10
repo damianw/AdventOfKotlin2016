@@ -68,7 +68,7 @@ object DecompressorV2 : Decompressor {
    * The "efficient" way to measure size. :)
    */
   override fun measureDecompressedSize(source: Source): Long {
-    return decompressImpl(source.bufferedSource())
+    return measureDecompressedSizeImpl(source.bufferedSource())
   }
 
 
@@ -86,7 +86,7 @@ object DecompressorV2 : Decompressor {
     return index
   }
 
-  private fun decompressImpl(bufferedSource: BufferedSource): Long {
+  private fun measureDecompressedSizeImpl(bufferedSource: BufferedSource): Long {
     val precedingSegmentLength = bufferedSource.countUntilNextCompressedSequence()
     if (bufferedSource.exhausted()) return precedingSegmentLength
     val buffer = Buffer()
@@ -95,8 +95,8 @@ object DecompressorV2 : Decompressor {
     bufferedSource.readUntil(buffer, ')')
     val count = buffer.readUtf8().toInt()
     bufferedSource.readFully(buffer, length)
-    val currentSegmentLength = decompressImpl(buffer) * count
-    val remainingLength = decompressImpl(bufferedSource)
+    val currentSegmentLength = measureDecompressedSizeImpl(buffer) * count
+    val remainingLength = measureDecompressedSizeImpl(bufferedSource)
     return precedingSegmentLength + currentSegmentLength + remainingLength
   }
 
