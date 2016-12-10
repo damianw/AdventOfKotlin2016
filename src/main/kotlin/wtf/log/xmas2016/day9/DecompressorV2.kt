@@ -13,6 +13,7 @@ object DecompressorV2 : Decompressor {
 
   /**
    * Warning: will probably produce very large output and take a very long time because it is very dumb.
+   * Luckily it doesn't actually use a lot of memory... you'll probably want to point the sink straight at a file though.
    * #FirstTry
    */
   override fun decompress(source: Source, sink: Sink) {
