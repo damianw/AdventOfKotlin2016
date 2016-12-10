@@ -67,5 +67,6 @@ dependencies {
   compile "de.weltraumschaf.commons:jcommander:2.1.0"
   compile 'io.reactivex:rxjava:1.2.3'
   compile 'org.funktionale:funktionale:0.9.7'
+  compile 'com.google.guava:guava:20.0'
 }
 
