@@ -8,6 +8,7 @@ import rx.Observable
 import rx.Subscription
 import wtf.log.xmas2016.day1.day1
 import wtf.log.xmas2016.day10.day10
+import wtf.log.xmas2016.day12.day12
 import wtf.log.xmas2016.day2.day2
 import wtf.log.xmas2016.day3.day3
 import wtf.log.xmas2016.day5.day5
@@ -20,7 +21,20 @@ import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 import kotlin.system.measureNanoTime
 
-private val DAY_SOLUTIONS = listOf(::day1, ::day2, ::day3, null, ::day5, ::day6, ::day7, ::day8, ::day9, ::day10)
+private val DAY_SOLUTIONS = listOf(
+    ::day1,
+    ::day2,
+    ::day3,
+    null,
+    ::day5,
+    ::day6,
+    ::day7,
+    ::day8,
+    ::day9,
+    ::day10,
+    null,
+    ::day12
+)
 
 private object ProgramArguments {
 
