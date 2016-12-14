@@ -9,6 +9,7 @@ import rx.Subscription
 import wtf.log.xmas2016.day1.day1
 import wtf.log.xmas2016.day10.day10
 import wtf.log.xmas2016.day12.day12
+import wtf.log.xmas2016.day13.day13
 import wtf.log.xmas2016.day2.day2
 import wtf.log.xmas2016.day3.day3
 import wtf.log.xmas2016.day5.day5
@@ -33,7 +34,8 @@ private val DAY_SOLUTIONS = listOf(
     ::day9,
     ::day10,
     null,
-    ::day12
+    ::day12,
+    ::day13
 )
 
 private object ProgramArguments {
